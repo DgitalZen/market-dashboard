@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Intelligence Dashboard — Thursday, March 5, 2026 at 11:37 AM</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0a0c0f; --bg2:#0f1218; --bg3:#141820;
+    --border:#1e2535; --border2:#263042;
+    --text:#c8d4e8; --text-dim:#5a6a82; --text-mid:#8a9bb8;
+    --green:#00e676; --green-dim:#00c853;
+    --red:#ff4444; --red-dim:#cc0000;
+    --yellow:#ffd740; --amber:#ffab40;
+    --blue:#40c4ff; --purple:#b388ff; --cyan:#80deea;
+    --accent:#1565c0; --accent2:#0d47a1;
+    --on-badge:#00e676; --off-badge:#ff4444;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:12px; line-height:1.5; padding:16px; min-width:900px; }
+  .header { border:1px solid var(--border2); background:linear-gradient(135deg,#0d1520 0%,#0a0f18 100%); padding:18px 24px 14px; margin-bottom:12px; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#1565c0,#40c4ff,#1565c0); }
+  .header-top { display:flex; justify-content:space-between; align-items:flex-start; }
+  .header-title { font-size:20px; font-weight:700; color:#e8f0fe; letter-spacing:0.05em; }
+  .header-title span { color:var(--blue); }
+  .header-date { font-size:11px; color:var(--text-dim); text-align:right; }
+  .header-date .time { font-size:14px; color:var(--yellow); font-weight:600; margin-bottom:2px; }
+  .header-events { margin-top:10px; padding-top:10px; border-top:1px solid var(--border); }
+  .header-events .label { color:var(--text-dim); font-size:10px; letter-spacing:0.1em; margin-bottom:4px; }
+  .event-row { color:var(--text-mid); font-size:11px; padding:1px 0; }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:10px; }
+  .grid-4 { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:10px; margin-bottom:10px; }
+  .grid-1-2 { display:grid; grid-template-columns:1fr 2fr; gap:10px; margin-bottom:10px; }
+  .col-span-2 { grid-column:span 2; }
+  .col-span-3 { grid-column:span 3; }
+  .section-gap { margin-top:2px; }
+  .card { background:var(--bg2); border:1px solid var(--border); padding:12px 14px; position:relative; }
+  .card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+  .card-title { font-size:9px; font-weight:600; letter-spacing:0.15em; color:var(--text-dim); text-transform:uppercase; }
+  .card-badge { font-size:9px; padding:2px 8px; font-weight:600; letter-spacing:0.08em; }
+  table { width:100%; border-collapse:collapse; }
+  th { font-size:9px; letter-spacing:0.12em; color:var(--text-dim); text-transform:uppercase; padding:4px 6px; text-align:right; border-bottom:1px solid var(--border); }
+  th:first-child { text-align:left; }
+  td { padding:5px 6px; font-size:11px; border-bottom:1px solid rgba(30,37,53,0.5); text-align:right; white-space:nowrap; }
+  td:first-child { text-align:left; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:rgba(255,255,255,0.02); }
+  .badge-on  { background:#003320; color:var(--green); border:1px solid #005530; padding:1px 6px; font-size:9px; font-weight:700; letter-spacing:0.1em; }
+  .badge-off { background:#2a0a0a; color:var(--red); border:1px solid #550000; padding:1px 6px; font-size:9px; font-weight:700; letter-spacing:0.1em; }
+  .badge-leading { background:#001a2e; color:var(--blue); border:1px solid #003366; padding:1px 6px; font-size:9px; font-weight:600; }
+  .badge-lagging { background:#2a0a0a; color:var(--red); border:1px solid #550010; padding:1px 6px; font-size:9px; font-weight:600; }
+  .badge-neutral { background:#1a1a0a; color:var(--text-dim); border:1px solid #333310; padding:1px 6px; font-size:9px; font-weight:600; }
+  .pos { color:var(--green); } .neg { color:var(--red); } .neu { color:var(--text-mid); }
+  .hi  { color:var(--yellow); font-weight:600; }
+  .blue-text { color:var(--blue); } .amber-text { color:var(--amber); } .purple-text { color:var(--purple); }
+  .stat-row { display:flex; gap:10px; margin-bottom:10px; }
+  .stat-box { flex:1; background:var(--bg3); border:1px solid var(--border); padding:10px 12px; }
+  .stat-label { font-size:9px; color:var(--text-dim); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px; }
+  .stat-value { font-size:18px; font-weight:700; line-height:1.1; }
+  .stat-sub   { font-size:10px; color:var(--text-dim); margin-top:3px; }
+  .banners { margin-bottom:10px; display:flex; flex-direction:column; gap:5px; }
+  .banner { padding:7px 14px; font-size:11px; font-weight:500; border-left:3px solid; display:flex; align-items:center; gap:10px; letter-spacing:0.02em; }
+  .banner-red    { background:#1a0505; border-color:var(--red); color:#ffaaaa; }
+  .banner-yellow { background:#1a1505; border-color:var(--yellow); color:#ffe082; }
+  .banner-green  { background:#051a0a; border-color:var(--green); color:#a5d6a7; }
+  .flow-row { display:flex; gap:6px; margin-bottom:6px; font-size:11px; }
+  .flow-label { color:var(--text-dim); font-size:10px; min-width:80px; }
+  .flow-val   { color:var(--text); flex:1; }
+  .rate-row { display:flex; gap:8px; margin-bottom:5px; font-size:11px; }
+  .rate-key { color:var(--text-dim); font-size:10px; min-width:90px; letter-spacing:0.05em; }
+  .rate-val { color:var(--text); flex:1; }
+  .macro-card { background:var(--bg2); border:1px solid var(--border2); padding:16px 20px; margin-bottom:10px; border-left:3px solid var(--accent); }
+  .macro-line1 { font-size:15px; font-weight:600; color:#e8f0fe; margin-bottom:4px; }
+  .macro-line2 { font-size:11px; color:var(--amber); margin-bottom:12px; }
+  .playbook-label { font-size:9px; color:var(--text-dim); letter-spacing:0.15em; margin-bottom:6px; }
+  .playbook-box { background:var(--bg3); border:1px solid var(--border2); padding:10px 16px; font-size:13px; font-weight:600; color:var(--blue); letter-spacing:0.03em; }
+  .factor-grid .factor-best { background:rgba(21,101,192,0.1); }
+  .earnings-item { margin-bottom:6px; font-size:11px; line-height:1.6; }
+  .ticker { color:var(--yellow); font-weight:700; }
+  .beat { color:var(--green); } .miss { color:var(--red); }
+  .breadth-item { margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .breadth-item:last-child { border-bottom:none; margin-bottom:0; }
+  .breadth-label { font-size:9px; color:var(--text-dim); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="header-title">MARKET <span>INTELLIGENCE</span> DASHBOARD</div>
+    <div class="header-date">
+      <div class="time">Thursday, March 5, 2026 at 11:37 AM</div>
+      <div>Rules Engine v3 · Auto-generated</div>
+    </div>
+  </div>
+  <div class="header-events">
+    <div class="label">KEY EVENTS TODAY</div>
+    <div class="event-row">Key Events Today:</div><div class="event-row">Weekly Jobless Claims (released pre-market)</div><div class="event-row">February Nonfarm Payrolls Preview — full report tomorrow (Fri Mar 6)</div><div class="event-row">Earnings: COST, KR (pre-market reported) | MRVL, CIEN after close</div><div class="event-row">Iran-Israel conflict Day 6 — missile exchanges ongoing; oil elevated</div><div class="event-row">Trump's 15% global tariff expected to take effect this week (Bessent)</div><div class="event-row">Fed rate cut odds near 0% for March meeting; Sept. now first live meeting</div>
+  </div>
+</div>
+
+<!-- BANNERS -->
+<div class="banners"><div class="banner banner-red">🔴 CTA SELLING ACTIVE → SPY OFF, IWM OFF (OFF Count: 2/3)</div><div class="banner banner-yellow">⚠️  LEADERSHIP WEAK → QQQ lagging SPY on 3M; watch high beta</div><div class="banner banner-yellow">🛡️  DEFENSIVE ROTATION PARADOX → XLV/XLP lagging but XLE/energy leading; inflation trade overriding classic risk-off</div><div class="banner banner-red">🔥 TECH UNDER DISTRIBUTION → XLK lagging SPY 1M; today's bounce is oversold relief, not trend resumption</div><div class="banner banner-red">📊 BROAD SECTOR SELLOFF → 2/11 sectors green — risk-off confirmed</div><div class="banner banner-red">⚡ OVERNIGHT SHOCK — Iran missile strike on oil tanker | watch crude, XLE, TLT, EWJ</div><div class="banner banner-yellow">🏅 GOLD SIGNAL → near ATH (-4.3%); fiscal + geopolitical risk premium elevated</div><div class="banner banner-yellow">🌍 DOLLAR STRENGTH SUPPRESSING FLOWS → DXY +1.84% 1M; EM and international lagging</div><div class="banner banner-yellow">🇲🇽 MEXICO LAGGING → EWW -3.61% 1M, underperforming EM; tariff risk premium active</div><div class="banner banner-yellow">📉 VALUE ROTATION → Growth lagging Value on 1M; defensive repositioning underway</div><div class="banner banner-red">🚫 NOWHERE TO HIDE → TLT OFF + equities OFF; inflation fear blocking bond safety bid</div></div>
+
+<!-- ROW 1: VIX + BREADTH + OVERNIGHT -->
+<div class="grid-3 section-gap">
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">⚡ Volatility</span>
+      <span class="card-badge" style="color:#ff6d00;border:1px solid #ff6d00;background:rgba(0,0,0,0.3);">STRESSED</span>
+    </div>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-label">VIX</div>
+        <div class="stat-value" style="color:#ff6d00;">22.91</div>
+      </div>
+    </div>
+    <div class="rate-row"><span class="rate-key">CTA</span><span class="rate-val">ELEVATED (VIX &gt; 18 AND OFF Count = 2)</span></div>
+    <div class="rate-row"><span class="rate-key">OFF Count</span><span class="rate-val">2 / 3  (SPY OFF, IWM OFF — QQQ ON)</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">🧩 Breadth</span></div>
+    <div class="breadth-item">
+      <div class="breadth-label">SPY vs RSP</div>
+      <div style="font-size:11px;color:var(--text-mid);">: SPY -0.54% vs RSP -0.78% | Spread: SPY outperforms
+                by +0.24% — within 1.5% threshold → BREADTH NEUTRAL
+                Note: RSP 1M +1.38% vs SPY 1M -1.17% — equal-weight
+                has outperformed on a rolling basis, suggesting
+                the 1-month breadth backdrop is actually healthier
+                than SPY's mega-cap drag implies.</div>
+    </div>
+    <div class="breadth-item">
+      <div class="breadth-label">QQQ vs QQQE</div>
+      <div style="font-size:11px;color:var(--text-mid);">: QQQ -0.26% vs QQQE -0.30% | Spread: +0.04% — within
+                threshold → BREADTH NEUTRAL. QQQE 1M +0.85% vs
+                QQQ 1M -1.20% — equal-weight Nasdaq holding firmer;
+                top-10 concentration (~54% of QQQ) is masking
+                underlying resilience in mid-cap tech.</div>
+    </div>
+    <div class="breadth-item">
+      <div class="breadth-label">Small Caps</div>
+      <div style="font-size:11px;color:var(--text-mid);">: IWM OFF (-1.36% | below 20D SMA). SPY OFF, QQQ ON.
+                Mixed read — IWM and SPY both off but QQQ holding.
+                Dominant signal: BROAD RISK-OFF. Small caps bear the
+                brunt of geopolitical risk-off and tariff anxiety.
+                IWM's strong 3M (+5.67%) shows the prior rotation
+                bid; today that bid is absent.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">🚨 Overnight Flash</span></div>
+    <div style="color:var(--amber);font-size:11px;line-height:1.6;white-space:pre-wrap;">— UNUSUAL EVENTS ONLY
+
+⚡ IRAN MISSILE STRIKE ON OIL TANKER | Iranian forces hit a commercial
+   oil tanker in the Persian Gulf overnight, escalating the 6-day
+   Israel-Iran conflict. Hundreds of ships remain blocked at the
+   Strait of Hormuz. WTI crude surged ~4% to ~$77/bbl (+14% in a week),
+   its highest since June 2025. The strike is directly driving XLE
+   outperformance, elevated inflation expectations, and risk-off pressure
+   across equities and bonds.
+   IMPACT: Inflationary | ASSETS AFFECTED: Crude oil, XLE, TLT (negative),
+   EWJ (Korea natural gas import fear → Kospi -12% Wed, +10% recovery today)</div>
+  </div>
+</div>
+
+<!-- ROW 2: EARNINGS + SECTOR HEATMAP -->
+<div class="grid-1-2 section-gap">
+  <div class="card">
+    <div class="card-header"><span class="card-title">📋 Earnings</span></div>
+    <div style="font-size:9px;color:var(--text-dim);letter-spacing:0.1em;margin-bottom:6px;">PREVIOUS CLOSE</div>
+    <div style="font-size:11px;color:var(--text-mid);margin-bottom:10px;white-space:pre-wrap;">RESULTS (Mar 4, 2026)
+
+AVGO : BEAT +9.0% EPS | BEAT +0.9% REV | AI revenue +106% YoY;
+       Q2 guide $22B vs $20.4B est — eye-popping 47% YoY outlook
+       -&gt; AH / Pre-market: +5.3% to +6.3% | Trading ~$337 pre-open</div>
+    
+    <div style="font-size:9px;color:var(--text-dim);letter-spacing:0.1em;margin-bottom:4px;">TODAY'S REPORTERS</div>
+    <div style="font-size:10px;margin-bottom:4px;"><span style="color:var(--text-dim);">Pre-Mkt: </span><span style="color:var(--yellow);">: KR (BEAT +6.7% EPS | MISS -0.9% REV → stock -5.3% on rev miss)</span></div>
+    <div style="font-size:10px;"><span style="color:var(--text-dim);">After Close: </span><span style="color:var(--amber);">: MRVL  COST  CIEN
+====================================================================</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">🗂️ Sector Heatmap</span>
+      <span style="font-size:10px;color:var(--text-dim);">2/11 sectors green — BROAD SELLOFF — risk-off confirmed</span>
+    </div>
+    <table>
+      <thead><tr><th>SECTOR</th><th>ETF</th><th>DAY %</th><th>1M %</th><th>STATUS</th></tr></thead>
+      <tbody>
+    <tr>
+      <td>Energy</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLE</td>
+      <td><span class="pos">+0.52%</span></td>
+      <td><span class="pos">+9.31%</span></td>
+      <td><span class="badge-leading">LEADING</span></td>
+    </tr>
+    <tr>
+      <td>Technology</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLK</td>
+      <td><span class="pos">+0.46%</span></td>
+      <td><span class="neg">-1.12%</span></td>
+      <td><span class="badge-leading">LEADING</span></td>
+    </tr>
+    <tr>
+      <td>Comm Services</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLC</td>
+      <td><span class="neg">-0.17%</span></td>
+      <td><span class="pos">+0.72%</span></td>
+      <td><span class="badge-leading">LEADING</span></td>
+    </tr>
+    <tr>
+      <td>Cons Discret</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLY</td>
+      <td><span class="neg">-0.37%</span></td>
+      <td><span class="neg">-4.15%</span></td>
+      <td><span class="badge-neutral">NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td>Financials</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLF</td>
+      <td><span class="neg">-0.69%</span></td>
+      <td><span class="neg">-4.46%</span></td>
+      <td><span class="badge-neutral">NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td>Utilities</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLU</td>
+      <td><span class="neg">-1.22%</span></td>
+      <td><span class="pos">+7.99%</span></td>
+      <td><span class="badge-neutral">NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td>Materials</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLB</td>
+      <td><span class="neg">-1.23%</span></td>
+      <td><span class="pos">+1.14%</span></td>
+      <td><span class="badge-neutral">NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td>Real Estate</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLRE</td>
+      <td><span class="neg">-1.31%</span></td>
+      <td><span class="pos">+5.83%</span></td>
+      <td><span class="badge-neutral">NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td>Industrials</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLI</td>
+      <td><span class="neg">-1.56%</span></td>
+      <td><span class="pos">+2.54%</span></td>
+      <td><span class="badge-lagging">LAGGING</span></td>
+    </tr>
+    <tr>
+      <td>Cons Staples</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLP</td>
+      <td><span class="neg">-1.61%</span></td>
+      <td><span class="neg">-0.13%</span></td>
+      <td><span class="badge-lagging">LAGGING</span></td>
+    </tr>
+    <tr>
+      <td>Health Care</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLV</td>
+      <td><span class="neg">-1.88%</span></td>
+      <td><span class="neu">0.00%</span></td>
+      <td><span class="badge-lagging">LAGGING</span></td>
+    </tr></tbody>
+    </table>
+    <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">
+      <div class="rate-row"><span class="rate-key">Rotation</span><span class="rate-val" style="color:var(--text-mid);">Energy leading on Iran oil shock + AVGO-fueled tech bounce;</span></div>
+      <div class="rate-row"><span class="rate-key">Momentum</span><span class="rate-val" style="color:var(--amber);">XLK LEADING day / LAGGING 1M → OVERSOLD BOUNCE — not trend</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 3: GLOBAL FLOWS -->
+<div class="grid-3 section-gap">
+  <div class="card">
+    <div class="card-header"><span class="card-title">🌍 Global Flows</span></div>
+    <div class="flow-row"><span class="flow-label">VEA/EWJ</span><span class="flow-val">: VEA 1M -1.01% vs SPY 1M -1.17% — essentially inline;
+                  EWJ 1M -0.67% — Japan modestly outperforming SPY 1M.
+                  Today both selling off hard (VEA -1.98%, EWJ -2.81%)
+                  on Iran/oil shock. SELL AMERICA signal NOT confirmed —
+                  international is not acting as capital destination.</span></div>
+    <div class="flow-row"><span class="flow-label">VWO/FXI</span><span class="flow-val">: VWO 1M -3.36%, FXI 1M -8.25% — EM meaningfully
+                  underperforming SPY. No EM rotation bid. China set
+                  2026 GDP target at 4.5–5%, lowest since 1990s — confirms
+                  structural deceleration. Dollar strength and Iran risk
+                  both suppressing EM flows.</span></div>
+    <div class="flow-row"><span class="flow-label">EWW</span><span class="flow-val">: 1M -3.61% | Day: -2.55% — underperforming both SPY and
+                  broader EM. Tariff risk premium active: Trump's 15%
+                  global tariff expected this week, with Mexico
+                  particularly exposed via USMCA trade dependence.
+                  EWW LAGGING EM — tariff narrative intact.</span></div>
+    <div class="flow-row"><span class="flow-label">DXY</span><span class="flow-val">: 99.23 | 1M: +1.84% — Dollar strengthening over 1M
+                  but at 99 remains below 100, not yet at structural
+                  breakout level. Supports ongoing pressure on EM and
+                  international assets. No structural breakdown.</span></div>
+    <div class="flow-row"><span class="flow-label">Gold</span><span class="flow-val">: $5,091.50 | 1M: +3.83% | 3M ATH: $5,318.40
+                  Distance from ATH: -4.27% — Gold pulling back from
+                  its ATH (~$5,318 hit in late Feb) but remains
+                  elevated. Fiscal risk premium, Iran conflict, and
+                  inflation fears keeping gold well-bid. Near-ATH
+                  signal still active.</span></div>
+    <div class="flow-row"><span class="flow-label">Sell America</span><span class="flow-val" style="color:var(--amber);">signal NOT confirmed —
+                  international is not acting as capital destination.
+
+VWO / FXI       : VWO 1M -3.36%, FXI 1M -8.25% — EM meaningfully
+                  underperforming SPY. No EM rotation bid. China set
+                  2026 GDP target at 4.5–5%, lowest since 1990s — confirms
+                  structural deceleration. Dollar strength and Iran risk
+                  both suppressing EM flows.
+
+EWW             : 1M -3.61% | Day: -2.55% — underperforming both SPY and
+                  broader EM. Tariff risk premium active: Trump's 15%
+                  global tariff expected this week, with Mexico
+                  particularly exposed via USMCA trade dependence.
+                  EWW LAGGING EM — tariff narrative intact.
+
+DXY             : 99.23 | 1M: +1.84% — Dollar strengthening over 1M
+                  but at 99 remains below 100, not yet at structural
+                  breakout level. Supports ongoing pressure on EM and
+                  international assets. No structural breakdown.
+
+Gold            : $5,091.50 | 1M: +3.83% | 3M ATH: $5,318.40
+                  Distance from ATH: -4.27% — Gold pulling back from
+                  its ATH (~$5,318 hit in late Feb) but remains
+                  elevated. Fiscal risk premium, Iran conflict, and
+                  inflation fears keeping gold well-bid. Near-ATH
+                  signal still active.
+
+SELL AMERICA    : NOT CONFIRMED. International indices (VEA, EWJ, VWO,
+                  FXI, EWW) all underperforming or roughly matching SPY
+                  on 1M basis. Capital is NOT rotating into international.
+                  Global risk-off — cash and gold are the destination.</span></div>
+  </div>
+
+  <div class="card factor-grid">
+    <div class="card-header"><span class="card-title">🧮 Factor Grid — Size × Style</span></div>
+    <table style="margin-bottom:10px;">
+      <thead><tr><th></th><th>VALUE</th><th>BLEND</th><th>GROWTH</th></tr></thead>
+      <tbody>
+        <tr><td><span style="color:var(--text-mid);font-weight:600;">LARGE</span></td><td>
+      <div style="font-size:9px;color:var(--text-dim);">VTV</div>
+      <div class="neg">-1.07%</div>
+      
+    </td><td>
+      <div style="font-size:9px;color:var(--text-dim);">VV</div>
+      <div class="neg">-0.66%</div>
+      
+    </td><td>
+      <div style="font-size:9px;color:var(--text-dim);">IUSG</div>
+      <div class="neg">-1.94%</div>
+      
+    </td></tr>
+        <tr><td><span style="color:var(--text-mid);font-weight:600;">MID</span></td><td>
+      <div style="font-size:9px;color:var(--text-dim);">IWS</div>
+      <div class="pos">+1.76%</div>
+      
+    </td><td>
+      <div style="font-size:9px;color:var(--text-dim);">IJH</div>
+      <div class="neg">-0.83%</div>
+      
+    </td><td>
+      <div style="font-size:9px;color:var(--text-dim);">VOT</div>
+      <div class="neg">-0.24%</div>
+      
+    </td></tr>
+        <tr><td><span style="color:var(--text-mid);font-weight:600;">SMALL</span></td><td>
+      <div style="font-size:9px;color:var(--text-dim);">VBR</div>
+      <div class="neg">-1.06%</div>
+      
+    </td><td>
+      <div style="font-size:9px;color:var(--text-dim);">IJR</div>
+      <div class="neg">-1.19%</div>
+      
+    </td><td>
+      <div style="font-size:9px;color:var(--text-dim);">VBK</div>
+      <div class="neg">-1.07%</div>
+      
+    </td></tr>
+      </tbody>
+    </table>
+    <div style="border-top:1px solid var(--border);padding-top:8px;">
+      <div class="rate-row"><span class="rate-key" style="width:80px;">Day Lead</span><span class="rate-val" style="color:var(--text-mid);">Mid Growth (VOT) -0.24% — relative outperformer in a down tape</span></div><div class="rate-row"><span class="rate-key" style="width:80px;">1M Lead</span><span class="rate-val" style="color:var(--text-mid);">Mid Value (IWS) +1.76% — strongest rolling 1M cell</span></div><div class="rate-row"><span class="rate-key" style="width:80px;">SIZE</span><span class="rate-val" style="color:var(--text-mid);">Mid leading both Large and Small today. Large trailing worst</span></div><div class="rate-row"><span class="rate-key" style="width:80px;">STYLE</span><span class="rate-val" style="color:var(--text-mid);">Growth leading Value on the day (IUSG -0.33% vs VTV -1.07%).</span></div><div class="rate-row"><span class="rate-key" style="width:80px;">NOTE</span><span class="rate-val" style="color:var(--text-mid);">Mid Growth holding best in risk-off tape (AVGO/tech boost),</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">📊 Rates & Leadership</span></div>
+    <table style="margin-bottom:10px;">
+      <thead><tr><th>INSTRUMENT</th><th>VALUE</th></tr></thead>
+      <tbody>
+        <tr><td>2Y Yield</td><td class="hi">3.641% (EASY — below 3.5% threshold, interpolated)</td></tr>
+        <tr><td>10Y Yield</td><td class="hi">4.131% (NORMAL — 3.5–4.5% range)</td></tr>
+        <tr><td>Curve (10Y−2Y)</td><td class="hi">+0.490% (HEALTHY — +0.25 to +1.0%)
+Curve Shift</td></tr>
+      </tbody>
+    </table>
+    <div class="rate-row"><span class="rate-key">Shift</span><span class="rate-val">Curve is in healthy territory but inflation concerns</span></div>
+    <div class="rate-row"><span class="rate-key">TLT</span><span class="rate-val">OFF — price $88.73 below 20D SMA $88.97 | Bonds NOT</span></div>
+    <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">
+      <div class="card-title" style="margin-bottom:6px;">📊 Leadership</div>
+      <div class="rate-row"><span class="rate-key">QQQ vs SPY</span>
+        <span class="rate-val"><span class="badge-neutral" style="font-size:10px;">MIXED</span></span>
+      </div>
+      <div style="font-size:10px;color:var(--text-dim);padding:4px 0;">1M: QQQ -1.20% vs SPY -1.17%<br>3M: QQQ -1.94% vs SPY +0.29%</div>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 4: GLOBAL INDICES -->
+<div class="card section-gap" style="margin-bottom:10px;">
+  <div class="card-header"><span class="card-title">🗺️ Global Indices</span></div>
+  <table>
+    <thead><tr><th>REGION</th><th>INDEX</th><th>DAY %</th><th>YTD %</th><th>SMA</th></tr></thead>
+    <tbody><tr>
+      <td style="color:var(--blue);font-size:10px;">US</td>
+      <td>Nasdaq 100</td>
+      <td><span class="neg">-0.25%</span></td>
+      <td><span class="neg">-0.63%</span></td>
+      <td><span class="badge-on">ON</span></td>
+    </tr><tr>
+      <td style="color:var(--blue);font-size:10px;">US</td>
+      <td>Russell 2000</td>
+      <td><span class="neg">-1.34%</span></td>
+      <td><span class="pos">+3.81%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr style="height:4px;"><td colspan="5" style="border-top:1px solid var(--border2);padding:0;"></td></tr><tr>
+      <td style="color:var(--cyan);font-size:10px;">EU</td>
+      <td>DAX</td>
+      <td><span class="neg">-1.02%</span></td>
+      <td><span class="neg">-2.37%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr>
+      <td style="color:var(--cyan);font-size:10px;">EU</td>
+      <td>FTSE 100</td>
+      <td><span class="neg">-0.89%</span></td>
+      <td><span class="pos">+5.25%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr>
+      <td style="color:var(--cyan);font-size:10px;">EU</td>
+      <td>CAC 40</td>
+      <td><span class="neg">-0.99%</span></td>
+      <td><span class="neg">-1.32%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr style="height:4px;"><td colspan="5" style="border-top:1px solid var(--border2);padding:0;"></td></tr><tr>
+      <td style="color:var(--purple);font-size:10px;">Asia</td>
+      <td>Kospi (S.Korea)</td>
+      <td><span class="pos">+9.63%</span></td>
+      <td><span class="pos">+29.57%</span></td>
+      <td><span class="badge-on">ON</span></td>
+    </tr><tr>
+      <td style="color:var(--purple);font-size:10px;">Asia</td>
+      <td>Nikkei 225</td>
+      <td><span class="pos">+1.90%</span></td>
+      <td><span class="pos">+6.65%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr>
+      <td style="color:var(--purple);font-size:10px;">Asia</td>
+      <td>Hang Seng</td>
+      <td><span class="pos">+0.28%</span></td>
+      <td><span class="neg">-3.86%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr>
+      <td style="color:var(--purple);font-size:10px;">Asia</td>
+      <td>Shanghai Comp</td>
+      <td><span class="pos">+0.64%</span></td>
+      <td><span class="pos">+2.12%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr style="height:4px;"><td colspan="5" style="border-top:1px solid var(--border2);padding:0;"></td></tr><tr>
+      <td style="color:var(--amber);font-size:10px;">EM</td>
+      <td>Bovespa (Brazil)</td>
+      <td><span class="neg">-2.10%</span></td>
+      <td><span class="pos">+13.03%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr>
+      <td style="color:var(--amber);font-size:10px;">EM</td>
+      <td>Sensex (India)</td>
+      <td><span class="pos">+1.14%</span></td>
+      <td><span class="neg">-6.07%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr>
+      <td style="color:var(--amber);font-size:10px;">EM</td>
+      <td>IPC Mexico</td>
+      <td><span class="neg">-1.50%</span></td>
+      <td><span class="pos">+8.16%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr></tbody>
+  </table>
+</div>
+
+<!-- ROW 5: MACRO READ + PLAYBOOK -->
+<div class="macro-card">
+  <div style="font-size:9px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">MACRO READ</div>
+  <div class="macro-line1">Global risk-off; oil shock meets tariff + rates pressure</div>
+  <div class="macro-line2">⚑ Inflation re-acceleration kills rate cut path entirely</div>
+  <div class="playbook-label">PLAYBOOK</div>
+  <div class="playbook-box">➤ &nbsp;"Reduce beta | Favor defensives/value | Avoid leverage"</div>
+</div>
+
+<div style="text-align:center;font-size:9px;color:var(--text-dim);padding:6px;letter-spacing:0.05em;">
+  MARKET INTELLIGENCE DASHBOARD · RULES ENGINE v3 · Thursday, March 5, 2026 at 11:37 AM · FOR INFORMATIONAL PURPOSES ONLY
+</div>
+
+</body>
+</html>

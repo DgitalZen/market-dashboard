@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Market Intelligence Dashboard — Wednesday, June 17, 2026 at 7:21 AM</title>
+<title>Market Intelligence Dashboard — Thursday, June 18, 2026 at 7:20 AM</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -92,18 +92,18 @@
   <div class="header-top">
     <div class="header-title">MARKET <span>INTELLIGENCE</span> DASHBOARD</div>
     <div class="header-date">
-      <div class="time">Wednesday, June 17, 2026 at 7:21 AM</div>
+      <div class="time">Thursday, June 18, 2026 at 7:20 AM</div>
       <div>Rules Engine v3 · Auto-generated</div>
     </div>
   </div>
   <div class="header-events">
     <div class="label">KEY EVENTS TODAY</div>
-    
+    <div class="event-row">Initial Jobless Claims (weekly) due pre-open | Accenture (ACN) &amp; Kroger</div><div class="event-row">(KR) earnings calls 8:00 AM ET | Progressive (PGR) &amp; CarMax (KMX) also</div><div class="event-row">reporting pre-market | FOMC blackout lifted (June 17 meeting concluded,</div><div class="event-row">hawkish dot plot) | Markets CLOSED Friday June 19 (Juneteenth)</div>
   </div>
 </div>
 
 <!-- BANNERS -->
-<div class="banners"></div>
+<div class="banners"><div class="banner banner-red">🔴 OVERNIGHT SHOCK → US-Iran interim peace deal | watch crude oil,</div><div class="banner banner-yellow">Nikkei/Kospi, XLE</div><div class="banner banner-red">🔴 CTA SELLING ACTIVE → SPY, QQQ</div><div class="banner banner-red">🔴 BROAD SECTOR SELLOFF — risk-off confirmed</div><div class="banner banner-red">🔴 TECH UNDER DISTRIBUTION — reduce momentum (XLC)</div><div class="banner banner-yellow">🔵 SMALL CAP DIVERGENCE — domestic rotation</div><div class="banner banner-yellow">🔵 RISK-ON ROTATION — small growth leading</div><div class="banner banner-green">⚠️ FLIGHT TO SAFETY — bonds bid</div><div class="banner banner-yellow">⚠️ MEXICO LAGGING — tariff risk premium active</div><div class="banner banner-yellow">⚠️ VALUE ROTATION — growth under pressure</div><div class="banner banner-yellow">Two pipeline notes worth flagging: the Plumbing Temperature block has zero usable inputs again this morning (all four fields absent), and JBL's print is technically a pre-open June 17 report rather than a true after-close result — there was nothing AH-eligible to populate yesterday's slot, so I substituted the closest available print rather than leaving Previous Close empty. Worth prioritizing the EarningsWhispers auth fix and the Plumbing pre-fetch integration since both gaps recurred today.</div></div>
 
 <!-- ROW 1: VIX + BREADTH + OVERNIGHT -->
 <div class="grid-3 section-gap">
@@ -115,32 +115,46 @@
     <div class="stat-row">
       <div class="stat-box">
         <div class="stat-label">VIX</div>
-        <div class="stat-value" style="color:#ffd740;">20.00</div>
+        <div class="stat-value" style="color:#ffd740;">17.13</div>
       </div>
     </div>
-    <div class="rate-row"><span class="rate-key">CTA</span><span class="rate-val"></span></div>
-    <div class="rate-row"><span class="rate-key">OFF Count</span><span class="rate-val"></span></div>
+    <div class="rate-row"><span class="rate-key">CTA</span><span class="rate-val">MODERATE</span></div>
+    <div class="rate-row"><span class="rate-key">OFF Count</span><span class="rate-val">2 / 3  (SPY, QQQ)</span></div>
   </div>
 
   <div class="card">
     <div class="card-header"><span class="card-title">🧩 Breadth</span></div>
     <div class="breadth-item">
       <div class="breadth-label">SPY vs RSP</div>
-      <div style="font-size:11px;color:var(--text-mid);"></div>
+      <div style="font-size:11px;color:var(--text-mid);">: Breadth neutral — spread 0.25% (SPY -1.25% vs
+                  RSP -1.50%); cap-weight and equal-weight selling
+                  off in tandem, no hollow-rally or broad-
+                  participation signal</div>
     </div>
     <div class="breadth-item">
       <div class="breadth-label">QQQ vs QQQE</div>
-      <div style="font-size:11px;color:var(--text-mid);"></div>
+      <div style="font-size:11px;color:var(--text-mid);">: Breadth neutral — spread 0.11% (QQQ -1.01% vs
+                  QQQE -0.90%); top-10 concentration (~54%) not
+                  visibly distorting today's move</div>
     </div>
     <div class="breadth-item">
       <div class="breadth-label">Small Caps</div>
-      <div style="font-size:11px;color:var(--text-mid);"></div>
+      <div style="font-size:11px;color:var(--text-mid);">: IWM ON while SPY/QQQ both OFF → Domestic rotation
+                  bid</div>
     </div>
   </div>
 
   <div class="card">
     <div class="card-header"><span class="card-title">🚨 Overnight Flash</span></div>
-    <div style="color:var(--amber);font-size:11px;line-height:1.6;white-space:pre-wrap;"></div>
+    <div style="color:var(--amber);font-size:11px;line-height:1.6;white-space:pre-wrap;">— UNUSUAL EVENTS ONLY
+
+US-IRAN INTERIM PEACE AGREEMENT SIGNED (post-US-close) | 60-day window
+to negotiate full settlement; Iran to dilute enriched-uranium stockpile,
+US to lift oil-export sanctions | MARKET IMPACT: geopolitical risk
+premium unwinding, oil sharply lower, Asia gapped to highs (first to
+react since news broke after the US close) | ASSETS AFFECTED: crude
+oil, Nikkei 225 (record high), Kospi, energy complex (XLE), safe-haven
+gold (pressured further)</div>
   </div>
 </div>
 
@@ -149,25 +163,106 @@
   <div class="card">
     <div class="card-header"><span class="card-title">📋 Earnings</span></div>
     <div style="font-size:9px;color:var(--text-dim);letter-spacing:0.1em;margin-bottom:6px;">PREVIOUS CLOSE</div>
-    <div style="font-size:11px;color:var(--text-mid);margin-bottom:10px;white-space:pre-wrap;"></div>
+    <div style="font-size:11px;color:var(--text-mid);margin-bottom:10px;white-space:pre-wrap;">RESULTS
+JBL : BEAT +1.6% EPS | BEAT +1.3% REV | Raised FY26 AI-revenue outlook
+      to ~$13.6B (+50% YoY); reported pre-open June 17 (already
+      reflected in prior session) -&gt; reaction: stock +10%+ on the day</div>
     
     <div style="font-size:9px;color:var(--text-dim);letter-spacing:0.1em;margin-bottom:4px;">TODAY'S REPORTERS</div>
-    <div style="font-size:10px;margin-bottom:4px;"><span style="color:var(--text-dim);">Pre-Mkt: </span><span style="color:var(--yellow);"></span></div>
-    <div style="font-size:10px;"><span style="color:var(--text-dim);">After Close: </span><span style="color:var(--amber);"></span></div>
+    <div style="font-size:10px;margin-bottom:4px;"><span style="color:var(--text-dim);">Pre-Mkt: </span><span style="color:var(--yellow);">: ACN  KR  PGR  KMX</span></div>
+    <div style="font-size:10px;"><span style="color:var(--text-dim);">After Close: </span><span style="color:var(--amber);">: None scheduled
+====================================================================</span></div>
   </div>
 
   <div class="card">
     <div class="card-header">
       <span class="card-title">🗂️ Sector Heatmap</span>
-      <span style="font-size:10px;color:var(--text-dim);"></span>
+      <span style="font-size:10px;color:var(--text-dim);">0/11 sectors green — Broad selloff, risk-off confirmed</span>
     </div>
     <table>
       <thead><tr><th>SECTOR</th><th>ETF</th><th>DAY %</th><th>1M %</th><th>STATUS</th></tr></thead>
-      <tbody></tbody>
+      <tbody>
+    <tr>
+      <td>Industrials</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLI</td>
+      <td><span class="neg">-0.14%</span></td>
+      <td><span class="pos">+5.18%</span></td>
+      <td><span class="badge-leading">LEADING</span></td>
+    </tr>
+    <tr>
+      <td>Technology</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLK</td>
+      <td><span class="neg">-0.34%</span></td>
+      <td><span class="pos">+6.56%</span></td>
+      <td><span class="badge-leading">LEADING</span></td>
+    </tr>
+    <tr>
+      <td>Financials</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLF</td>
+      <td><span class="neg">-0.55%</span></td>
+      <td><span class="pos">+4.46%</span></td>
+      <td><span class="badge-leading">LEADING</span></td>
+    </tr>
+    <tr>
+      <td>Energy</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLE</td>
+      <td><span class="neg">-1.25%</span></td>
+      <td><span class="neg">-9.76%</span></td>
+      <td><span class="badge-neutral">NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td>Materials</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLB</td>
+      <td><span class="neg">-1.33%</span></td>
+      <td><span class="pos">+3.58%</span></td>
+      <td><span class="badge-neutral">NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td>Utilities</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLU</td>
+      <td><span class="neg">-1.33%</span></td>
+      <td><span class="pos">+1.18%</span></td>
+      <td><span class="badge-neutral">NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td>Health Care</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLV</td>
+      <td><span class="neg">-1.46%</span></td>
+      <td><span class="pos">+3.42%</span></td>
+      <td><span class="badge-neutral">NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td>Staples</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLP</td>
+      <td><span class="neg">-2.23%</span></td>
+      <td><span class="neg">-2.58%</span></td>
+      <td><span class="badge-neutral">NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td>Real Estate</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLRE</td>
+      <td><span class="neg">-2.51%</span></td>
+      <td><span class="pos">+0.50%</span></td>
+      <td><span class="badge-lagging">LAGGING</span></td>
+    </tr>
+    <tr>
+      <td>Discretionary</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLY</td>
+      <td><span class="neg">-2.51%</span></td>
+      <td><span class="neg">-0.71%</span></td>
+      <td><span class="badge-lagging">LAGGING</span></td>
+    </tr>
+    <tr>
+      <td>Comm Services</td>
+      <td style="color:var(--text-dim);font-size:10px;">XLC</td>
+      <td><span class="neg">-2.78%</span></td>
+      <td><span class="neg">-6.65%</span></td>
+      <td><span class="badge-lagging">LAGGING</span></td>
+    </tr></tbody>
     </table>
     <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">
-      <div class="rate-row"><span class="rate-key">Rotation</span><span class="rate-val" style="color:var(--text-mid);"></span></div>
-      <div class="rate-row"><span class="rate-key">Momentum</span><span class="rate-val" style="color:var(--amber);"></span></div>
+      <div class="rate-row"><span class="rate-key">Rotation</span><span class="rate-val" style="color:var(--text-mid);">Cyclical leadership (XLF/XLI) inside a broad down day;</span></div>
+      <div class="rate-row"><span class="rate-key">Momentum</span><span class="rate-val" style="color:var(--amber);">Momentum continuation — XLI/XLK/XLF lead both day</span></div>
     </div>
   </div>
 </div>
@@ -176,12 +271,28 @@
 <div class="grid-3 section-gap">
   <div class="card">
     <div class="card-header"><span class="card-title">🌍 Global Flows</span></div>
-    <div class="flow-row"><span class="flow-label">VEA/EWJ</span><span class="flow-val"></span></div>
-    <div class="flow-row"><span class="flow-label">VWO/FXI</span><span class="flow-val"></span></div>
-    <div class="flow-row"><span class="flow-label">EWW</span><span class="flow-val"></span></div>
-    <div class="flow-row"><span class="flow-label">DXY</span><span class="flow-val"></span></div>
-    <div class="flow-row"><span class="flow-label">Gold</span><span class="flow-val"></span></div>
-    <div class="flow-row"><span class="flow-label">Sell America</span><span class="flow-val" style="color:var(--amber);"></span></div>
+    <div class="flow-row"><span class="flow-label">VEA/EWJ</span><span class="flow-val">: VEA +3.57% / EWJ +4.45% (1M) vs SPY +0.31% — developed
+                  ex-US clearly outperforming on a 1M view</span></div>
+    <div class="flow-row"><span class="flow-label">VWO/FXI</span><span class="flow-val">: VWO +2.27% (1M, ahead of SPY) but FXI -6.24% (1M) —
+                  broad EM constructive, China-specific weak (Hang
+                  Seng OFF today, FXI -2.63% day)</span></div>
+    <div class="flow-row"><span class="flow-label">EWW</span><span class="flow-val">: -0.86% day | +0.70% 1M | lagging the broader EM
+                  complex (VWO +2.27%) — tariff risk premium still a
+                  drag on Mexico specifically</span></div>
+    <div class="flow-row"><span class="flow-label">DXY</span><span class="flow-val">: 100.74 | +1.45% (1M) | firming on the hawkish Fed
+                  surprise but still above the 100 structural
+                  threshold — not yet in dollar-breakdown territory</span></div>
+    <div class="flow-row"><span class="flow-label">Gold</span><span class="flow-val">: $4,270.00 | -5.24% (1M) | -12.68% off 3M ATH
+                  ($4,889.90) | signal: corrective pullback, pressured
+                  by dollar strength and rising real yields
+                  | Phase: does not fit standard taxonomy (see
+                  Plumbing section)
+                  | Qualifier: dollar firmness + post-Fed yield bid
+                  are suppressing gold despite elevated geopolitical
+                  backdrop</span></div>
+    <div class="flow-row"><span class="flow-label">Sell America</span><span class="flow-val" style="color:var(--amber);">: NOT CONFIRMED — VEA/EWJ outperform SPY on 1M, but
+                  DXY remains above the sub-100 threshold required
+                  for confirmation; SPY 1M is also still positive</span></div>
   </div>
 
   <div class="card factor-grid">
@@ -191,47 +302,47 @@
       <tbody>
         <tr><td><span style="color:var(--text-mid);font-weight:600;">LARGE</span></td><td>
       <div style="font-size:9px;color:var(--text-dim);">VTV</div>
-      <div class="neu">—</div>
+      <div class="neg">-0.89%</div>
       
     </td><td>
       <div style="font-size:9px;color:var(--text-dim);">VV</div>
-      <div class="neu">—</div>
+      <div class="neg">-1.24%</div>
       
     </td><td>
       <div style="font-size:9px;color:var(--text-dim);">IUSG</div>
-      <div class="neu">—</div>
+      <div class="neg">-1.12%</div>
       
     </td></tr>
         <tr><td><span style="color:var(--text-mid);font-weight:600;">MID</span></td><td>
       <div style="font-size:9px;color:var(--text-dim);">IWS</div>
-      <div class="neu">—</div>
+      <div class="neg">-1.38%</div>
       
     </td><td>
       <div style="font-size:9px;color:var(--text-dim);">IJH</div>
-      <div class="neu">—</div>
+      <div class="neg">-1.25%</div>
       
     </td><td>
       <div style="font-size:9px;color:var(--text-dim);">VOT</div>
-      <div class="neu">—</div>
+      <div class="neg">-0.88%</div>
       
     </td></tr>
         <tr><td><span style="color:var(--text-mid);font-weight:600;">SMALL</span></td><td>
       <div style="font-size:9px;color:var(--text-dim);">VBR</div>
-      <div class="neu">—</div>
+      <div class="neg">-1.49%</div>
       
     </td><td>
       <div style="font-size:9px;color:var(--text-dim);">IJR</div>
-      <div class="neu">—</div>
+      <div class="neg">-1.37%</div>
       
     </td><td>
       <div style="font-size:9px;color:var(--text-dim);">VBK</div>
-      <div class="neu">—</div>
+      <div class="neg">-0.62%</div>
       
     </td></tr>
       </tbody>
     </table>
     <div style="border-top:1px solid var(--border);padding-top:8px;">
-      
+      <div class="rate-row"><span class="rate-key" style="width:80px;">Day lead</span><span class="rate-val" style="color:var(--text-mid);">Small Growth (VBK) -0.62%</span></div><div class="rate-row"><span class="rate-key" style="width:80px;">1M lead</span><span class="rate-val" style="color:var(--text-mid);">Mid Growth (VOT) +5.98%</span></div><div class="rate-row"><span class="rate-key" style="width:80px;">SIZE</span><span class="rate-val" style="color:var(--text-mid);">Large marginally leading (avg -1.08% vs Small -1.16%,</span></div><div class="rate-row"><span class="rate-key" style="width:80px;">STYLE</span><span class="rate-val" style="color:var(--text-mid);">Growth leading Value (avg -0.87% vs -1.25%) — momentum</span></div><div class="rate-row"><span class="rate-key" style="width:80px;">NOTE</span><span class="rate-val" style="color:var(--text-mid);">Best single cell is Small Growth (VBK), but this is a</span></div>
     </div>
   </div>
 
@@ -240,17 +351,18 @@
     <table style="margin-bottom:10px;">
       <thead><tr><th>INSTRUMENT</th><th>VALUE</th></tr></thead>
       <tbody>
-        <tr><td>2Y Yield</td><td class="hi"></td></tr>
-        <tr><td>10Y Yield</td><td class="hi"></td></tr>
-        <tr><td>Curve (10Y−2Y)</td><td class="hi"></td></tr>
+        <tr><td>2Y Yield</td><td class="hi">3.856% [INTERPOLATED from 13wk/5Y] (NEUTRAL)</td></tr>
+        <tr><td>10Y Yield</td><td class="hi">4.487% (NORMAL)</td></tr>
+        <tr><td>Curve (10Y−2Y)</td><td class="hi">+0.631% (HEALTHY)
+Curve Shift</td></tr>
       </tbody>
     </table>
-    <div class="rate-row"><span class="rate-key">Shift</span><span class="rate-val"></span></div>
-    <div class="rate-row"><span class="rate-key">TLT</span><span class="rate-val"></span></div>
+    <div class="rate-row"><span class="rate-key">Shift</span><span class="rate-val">[DATA UNAVAILABLE — no day-over-day curve delta in</span></div>
+    <div class="rate-row"><span class="rate-key">TLT</span><span class="rate-val">ON — $86.33 vs SMA20 $85.20 (+0.16% day) | bonds</span></div>
     <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">
       <div class="card-title" style="margin-bottom:6px;">📊 Leadership</div>
       <div class="rate-row"><span class="rate-key">QQQ vs SPY</span>
-        <span class="rate-val"><span class="badge-neutral" style="font-size:10px;"></span></span>
+        <span class="rate-val"><span class="badge-on" style="font-size:10px;">STRONG</span></span>
       </div>
       <div style="font-size:10px;color:var(--text-dim);padding:4px 0;"><br></div>
     </div>
@@ -262,21 +374,93 @@
   <div class="card-header"><span class="card-title">🗺️ Global Indices</span></div>
   <table>
     <thead><tr><th>REGION</th><th>INDEX</th><th>DAY %</th><th>YTD %</th><th>SMA</th></tr></thead>
-    <tbody></tbody>
+    <tbody><tr>
+      <td style="color:var(--blue);font-size:10px;">US</td>
+      <td>Nasdaq 100</td>
+      <td><span class="neg">-1.01%</span></td>
+      <td><span class="pos">+17.99%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr>
+      <td style="color:var(--blue);font-size:10px;">US</td>
+      <td>Russell 2000</td>
+      <td><span class="neg">-0.75%</span></td>
+      <td><span class="pos">+17.01%</span></td>
+      <td><span class="badge-on">ON</span></td>
+    </tr><tr style="height:4px;"><td colspan="5" style="border-top:1px solid var(--border2);padding:0;"></td></tr><tr>
+      <td style="color:var(--cyan);font-size:10px;">EU</td>
+      <td>DAX</td>
+      <td><span class="neu">0.00%</span></td>
+      <td><span class="pos">+1.61%</span></td>
+      <td><span class="badge-on">ON</span></td>
+    </tr><tr>
+      <td style="color:var(--cyan);font-size:10px;">EU</td>
+      <td>FTSE 100</td>
+      <td><span class="neg">-1.05%</span></td>
+      <td><span class="pos">+4.50%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr>
+      <td style="color:var(--cyan);font-size:10px;">EU</td>
+      <td>CAC 40</td>
+      <td><span class="neg">-0.06%</span></td>
+      <td><span class="pos">+2.82%</span></td>
+      <td><span class="badge-on">ON</span></td>
+    </tr><tr style="height:4px;"><td colspan="5" style="border-top:1px solid var(--border2);padding:0;"></td></tr><tr>
+      <td style="color:var(--purple);font-size:10px;">Asia</td>
+      <td>Kospi (S.Korea)</td>
+      <td><span class="pos">+2.25%</span></td>
+      <td><span class="pos">+110.32%</span></td>
+      <td><span class="badge-on">ON</span></td>
+    </tr><tr>
+      <td style="color:var(--purple);font-size:10px;">Asia</td>
+      <td>Nikkei 225</td>
+      <td><span class="pos">+1.65%</span></td>
+      <td><span class="pos">+37.08%</span></td>
+      <td><span class="badge-on">ON</span></td>
+    </tr><tr>
+      <td style="color:var(--purple);font-size:10px;">Asia</td>
+      <td>Hang Seng</td>
+      <td><span class="neg">-1.59%</span></td>
+      <td><span class="neg">-9.16%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr>
+      <td style="color:var(--purple);font-size:10px;">Asia</td>
+      <td>Shanghai Comp</td>
+      <td><span class="pos">+0.40%</span></td>
+      <td><span class="pos">+2.10%</span></td>
+      <td><span class="badge-on">ON</span></td>
+    </tr><tr style="height:4px;"><td colspan="5" style="border-top:1px solid var(--border2);padding:0;"></td></tr><tr>
+      <td style="color:var(--amber);font-size:10px;">EM</td>
+      <td>Bovespa (Brazil)</td>
+      <td><span class="neg">-0.70%</span></td>
+      <td><span class="pos">+4.93%</span></td>
+      <td><span class="badge-off">OFF</span></td>
+    </tr><tr>
+      <td style="color:var(--amber);font-size:10px;">EM</td>
+      <td>Sensex (India)</td>
+      <td><span class="pos">+0.33%</span></td>
+      <td><span class="neg">-9.13%</span></td>
+      <td><span class="badge-on">ON</span></td>
+    </tr><tr>
+      <td style="color:var(--amber);font-size:10px;">EM</td>
+      <td>IPC Mexico</td>
+      <td><span class="neg">-0.26%</span></td>
+      <td><span class="pos">+6.49%</span></td>
+      <td><span class="badge-on">ON</span></td>
+    </tr></tbody>
   </table>
 </div>
 
 <!-- ROW 5: MACRO READ + PLAYBOOK -->
 <div class="macro-card">
   <div style="font-size:9px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">MACRO READ</div>
-  <div class="macro-line1"></div>
-  <div class="macro-line2">⚑ </div>
+  <div class="macro-line1">Line 1: Hawkish Fed dot-plot collides with Iran de-escalation rally</div>
+  <div class="macro-line2">⚑ Line 2: Claims data, ACN/KR/PGR/KMX earnings test fragile risk appetite</div>
   <div class="playbook-label">PLAYBOOK</div>
-  <div class="playbook-box">➤ &nbsp;""</div>
+  <div class="playbook-box">➤ &nbsp;"Reduce beta | Favor relative trades | Avoid leverage"</div>
 </div>
 
 <div style="text-align:center;font-size:9px;color:var(--text-dim);padding:6px;letter-spacing:0.05em;">
-  MARKET INTELLIGENCE DASHBOARD · RULES ENGINE v3 · Wednesday, June 17, 2026 at 7:21 AM · FOR INFORMATIONAL PURPOSES ONLY
+  MARKET INTELLIGENCE DASHBOARD · RULES ENGINE v3 · Thursday, June 18, 2026 at 7:20 AM · FOR INFORMATIONAL PURPOSES ONLY
 </div>
 
 </body>
